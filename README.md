@@ -1,6 +1,4 @@
-<p align="right">
-  <img src="./Assets/logo.svg" width=300 height=300 alt="NETRA Logo" />
-</p>
+<div align="right"><img src="./Assets/logo.svg" width="300" height="300" alt="NETRA Logo" /></div>
 
 # NETRA
 **Network Evaluation, Trend & Relationship Analytics**
