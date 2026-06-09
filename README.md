@@ -5,7 +5,7 @@
 # NETRA
 **Network Evaluation, Trend & Relationship Analytics**
 
-> Secure, open-source, multi-layered intelligence and relationship analytics platform for security agencies, defense symposiums, and tactical units — shifting operations from reactive manual monitoring to audited, proactive situational awareness.
+>Secure, open-source, multi-layered intelligence and relationship analytics platform for intelligence agencies, shifting tactical defense from reactive monitoring to audited, proactive operations
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11+-3776AB.svg)](https://python.org)
@@ -184,38 +184,65 @@ flowchart LR
 
 ---
 
-## Frontend — Four Boards
-
-| Board | Purpose | Key Technology |
-|-------|---------|----------------|
-| **General Board** | Regional heatmap · Z-score alert overlays | MapLibre GL · `@india-boundary-corrector` (Survey of India compliant) |
-| **Case Board** | FIR workspace · entity highlights · Break-Glass modal | React |
-| **Profile Board** | Suspect link graph · cross-jurisdiction timeline | Cytoscape.js · Web Workers |
-| **Vehicle Board** | VAHAN registry · challan log · state-wide flag history | VAHAN API |
+## Interface
+| Board | Purpose | Key Features |
+| :--- | :--- | :--- |
+| **General Board** | Regional heatmap · Z-score alert overlays | • HDBSCAN density-based incident clustering visualization<br>• Real-time MAD anomaly flashing on station boundaries<br>• Survey of India-compliant boundary correction layers<br>• Live spatial filtering by incident type and time range |
+| **Case Board** | FIR workspace · entity highlights · Break-Glass modal | • Interactive NLP entity tagging (person, vehicle, contact, MO)<br>• Integrated regional-to-English translation viewer<br>• "Break-Glass" cross-jurisdiction temporary PII decryption modal<br>• Manual entity resolution queue for review and matching |
+| **Profile Board** | Suspect link graph · cross-jurisdiction timeline | • Cytoscape.js canvas with force-directed and radial layouts<br>• GDS Centrality node-sizing and Louvain community coloring<br>• Interactive timeline merging multi-jurisdictional incident logs<br>• Direct dynamic expansion of first- and second-degree associates |
+| **Vehicle Board** | VAHAN registry · challan log · state-wide flag history | • Direct VAHAN API real-time registration retrieval<br>• State-wide alerts for blacklisted/wanted vehicle plate matches<br>• Aggregated history of traffic challans and violations<br>• Geographic mapping of vehicle sighting logs |
 
 ---
 
 ## Project Structure
-
 ```
 netra/
+│
 ├── backend/
-│   ├── config.py               # Pydantic global settings
-│   ├── models.py               # Unified JSON/UI schemas
-│   ├── parsers.py              # OCR · IndicTrans2 · CDR parsers
-│   ├── nlp_engine.py           # spaCy · IndicBERT NER · entity resolution
-│   ├── graph_analytics.py      # Neo4j GDS projections · centrality · community
-│   ├── spatial_clustering.py   # HDBSCAN Haversine clustering
-│   ├── anomaly_detection.py    # Modified Z-Score / MAD engine
-│   ├── auth.py                 # JWT · RBAC · JurisdictionalGuard
-│   ├── middleware.py           # Immutable audit logging middleware
-│   ├── routes.py               # FastAPI consolidated routes
-│   └── main.py                 # App init · event loops
+│   ├── alembic/                    # DB Migrations (PostgreSQL)
+│   ├── app/                        # Renamed from NETRA_ingestion for broader scope
+│   │   ├── __init__.py
+│   │   ├── config.py               # Pydantic BaseSettings
+│   │   ├── database.py             # DB Session initializers (PG, Neo4j, ES)
+│   │   ├── models.py               # SQL Alchemy / Neo4j OGM models
+│   │   ├── schemas_api.py          # Pydantic validation schemas
+│   │   ├── parsers.py              # OCR & Regional translator pipelines
+│   │   ├── nlp_engine.py           # spaCy/IndicBERT NER
+│   │   ├── external_api.py         # VAHAN API integrations
+│   │   ├── spatial_engine.py       # HDBSCAN and MAD engines
+│   │   ├── mo_matcher.py           # Modus Operandi analytics
+│   │   ├── graph_analytics.py      # Neo4j GDS projections
+│   │   ├── auth.py                 # RBAC and JurisdictionalGuard
+│   │   ├── orchestrator.py         # Celery/Kafka worker pipelines
+│   │   └── middleware.py           # Audit logging interceptor
+│   │
+│   ├── routes/                     # Split routes if they grow large
+│   │   ├── __init__.py
+│   │   └── api.py                  # API endpoints
+│   │
+│   ├── .env.example                # Template for database credentials/keys
+│   ├── main.py                     # FastAPI entry point
+│   └── requirements.txt
+│
 └── frontend/
-    ├── store.js                # Zustand state · override headers
-    ├── GeneralBoardMap.jsx     # MapLibre GL · boundary corrector
-    ├── LinkExplorer.jsx        # Cytoscape.js network canvas
-    └── BreakGlassModal.jsx     # Emergency override justification UI
+    ├── package.json
+    ├── tailwind.config.js
+    ├── postcss.config.js
+    ├── index.html
+    └── src/
+        ├── assets/                 # SVGs and background graphics
+        ├── components/
+        │   ├── GeneralBoardMap.jsx
+        │   ├── LinkExplorer.jsx
+        │   └── BreakGlassModal.jsx
+        ├── views/
+        │   ├── CaseBoard.jsx
+        │   ├── ProfileBoard.jsx
+        │   └── VehicleBoard.jsx
+        ├── main.jsx
+        ├── store.js                # Zustand state
+        ├── api.js                  # Axios client configuration
+        └── App.jsx
 ```
 
 ---
