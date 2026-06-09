@@ -2,7 +2,6 @@
   <img src="./Assets/logo.svg" width=300 height=300 alt="NETRA Logo" />
 </p>
 
-
 # NETRA
 **Network Evaluation, Trend & Relationship Analytics**
 
