@@ -1,7 +1,7 @@
 <div align="right"><img src="./Assets/logo.svg" width="300" height="300" alt="NETRA Logo" /></div>
 
 # NETRA
-**Network Evaluation, Trend & Relationship Analytics**
+**Network Evaluation, Trend & Relation Analytics**
 
 >Secure, open-source, multi-layered intelligence and relationship analytics platform for intelligence agencies, shifting tactical defense from reactive monitoring to audited, proactive operations
 
