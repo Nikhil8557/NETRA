@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%" style="background-color: #FFFFFF;">
+  <style>
+    /* Pure CSS Keyframe Animations for a smooth, living color cycle */
+    @keyframes cycle-stop-1 {
+      0%, 100% { stop-color: #0A1128; } /* Deep Navy */
+      20% { stop-color: #1D4ED8; }      /* Cobalt */
+      40% { stop-color: #14B8A6; }      /* Teal */
+      60% { stop-color: #7C3AED; }      /* Violet */
+      80% { stop-color: #FB7185; }      /* Coral */
+    }
+
+    @keyframes cycle-stop-2 {
+      0%, 100% { stop-color: #1D4ED8; } /* Cobalt */
+      20% { stop-color: #14B8A6; }      /* Teal */
+      40% { stop-color: #7C3AED; }      /* Violet */
+      60% { stop-color: #FB7185; }      /* Coral */
+      80% { stop-color: #0A1128; }      /* Deep Navy */
+    }
+
+    /* Assigning the animations to the respective gradient stops */
+    #gradient-stop-1 {
+      animation: cycle-stop-1 12s linear infinite;
+    }
+    #gradient-stop-2 {
+      animation: cycle-stop-2 12s linear infinite;
+    }
+  </style>
+
+  <defs>
+    <linearGradient id="css-prismatic-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop id="gradient-stop-1" offset="0%" />
+      <stop id="gradient-stop-2" offset="100%" />
+    </linearGradient>
+  </defs>
+
+  <g stroke="url(#css-prismatic-gradient)" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-width="14">
+    <circle cx="250" cy="215" r="25" fill="url(#css-prismatic-gradient)" stroke="none" />
+    <circle cx="250" cy="215" r="16" fill="#FFFFFF" stroke="none" />
+    <circle cx="250" cy="215" r="9" fill="url(#css-prismatic-gradient)" stroke="none" />
+    <path d="M 218,244 V 335 L 250,270" />
+    <path d="M 250,250 C 270,295 305,335 345,315 C 372,295 378,252 352,234 C 332,220 314,238 324,256 C 332,270 346,262 342,254" />
+    <path d="M 140,165 C 190,150 310,150 360,165" />
+    <path d="M 135,215 H 168 C 195,172 305,172 332,215 H 365" />
+    <path d="M 168,215 C 195,258 305,258 332,215" />
+
+  </g>
+</svg>
